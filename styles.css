@@ -1,0 +1,142 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1e1e1e; /* Fondo oscuro para un aspecto moderno */
+    color: #fff; /* Texto blanco para contrastar */
+    animation: gradientAnimation 15s infinite alternate; /* Agrega una animación al fondo */
+}
+
+@keyframes gradientAnimation {
+    from {
+        background-position: 0% 50%; /* Inicia desde la izquierda */
+    }
+    to {
+        background-position: 100% 50%; /* Llega hasta la derecha */
+    }
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+#projects {
+    background-color: #292929; /* Fondo ligeramente más oscuro para separar secciones */
+    padding: 3rem 0;
+}
+
+.project-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.project {
+    
+    border: 1px solid #444; /* Borde más oscuro */
+    background-color: #333; /* Fondo más oscuro */
+    padding: 1.5rem;
+    margin: 1.5rem;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    animation: fadeInUp 0.5s ease-out, moveIn 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes moveIn {
+    from {
+        transform: translateX(-20px);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+
+.project:hover {
+    transform: scale(1.05);
+}
+
+.project h3 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.project p {
+    color: #aaa; /* Color de texto más claro */
+    height: 70px;
+    overflow: hidden;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.project a {
+    color: #4cd137; /* Verde para resaltar */
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.project a:hover {
+    text-decoration: underline;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333; /* Fondo más oscuro para la ventana modal */
+    padding: 2rem;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    text-align: left;
+}
+
+.close-modal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.5rem;
+    padding: 1rem;
+    cursor: pointer;
+    color: #fff;
+}
+
+.close-modal:hover {
+    color: #ff4d4d; /* Rojo para resaltar al pasar el ratón */
+}
+
+#goToUserPageBtn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #3498db; /* Color de fondo del botón */
+    color: #fff; /* Color de texto del botón */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
