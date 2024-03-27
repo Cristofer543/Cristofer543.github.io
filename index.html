@@ -1,27 +1,67 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-mQ2TOUZaClGzrJEH1++5x5Vu8FNKT2sFq2P1wLVwoS5ofH0gRg7jKGshRV7fkq5U" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
     <title>Mi Portafolio</title>
 </head>
 <body>
     <header>
         <div class="container">
             <h1>Mi Portafolio</h1>
+            <nav>
+                <ul>
+                    <li><a href="#projects">Proyectos</a></li>
+                    <li><a href="#about">Acerca de</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
-    <section id="projects">
-        <div class="container">
-            <h2>Proyectos Destacados</h2>
-            <div class="project-gallery" id="projectGallery">
-                <!-- Proyectos se cargarán aquí dinámicamente -->
+    <main>
+        <section id="projects">
+            <div class="container">
+                <h2>Proyectos Destacados</h2>
+                <div class="project-gallery" id="projectGallery">
+                    <!-- Proyectos se cargarán aquí dinámicamente -->
+                </div>
             </div>
+        </section>
+        <section id="about">
+            <div class="container">
+                <h2>Acerca de</h2>
+                <p>Soy un desarrollador apasionado por la creación de soluciones innovadoras y eficientes. Me encanta enfrentar nuevos desafíos y aprender constantemente. Este portafolio es una muestra de mis habilidades y proyectos más destacados.</p>
+            </div>
+        </section>
+        <section id="contact">
+            <div class="container">
+                <h2>Contacto</h2>
+                <form id="contactForm">
+                    <div>
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div>
+                        <label for="email">Correo electrónico:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div>
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Mi Portafolio. Todos los derechos reservados.</p>
         </div>
-        
-    </section>
+    </footer>
 
     <div class="modal" id="projectModal">
         <div class="modal-content" id="modalContent"></div>
