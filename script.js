@@ -8,6 +8,9 @@ fetch(apiUrl)
     .then(projectsData => {
         const projectGallery = document.getElementById("projectGallery");
 
+        // Ordenar los proyectos por fecha de actualización descendente
+        projectsData.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
         projectsData.forEach(project => {
             const projectElement = document.createElement("div");
             projectElement.classList.add("project");
@@ -35,6 +38,7 @@ function openModal(projectName, projectUrl) {
                 <p>Desarrollador: ${projectInfo.owner}</p>
                 <p>Contribuidores: ${projectInfo.contributors}</p>
                 <p>Lenguaje principal: ${projectInfo.language}</p>
+                <p>Última actualización: ${projectInfo.lastUpdate}</p>
                 <a href="${projectUrl}" target="_blank">Ver en GitHub <i class="fas fa-external-link-alt"></i></a>
             `;
 
@@ -46,7 +50,10 @@ function openModal(projectName, projectUrl) {
 
 function generateProjectInfo(projectDetails) {
     const creationDate = new Date(projectDetails.created_at);
-    const formattedDate = creationDate.toLocaleDateString();
+    const formattedCreationDate = creationDate.toLocaleDateString();
+
+    const lastUpdate = new Date(projectDetails.updated_at);
+    const formattedLastUpdate = lastUpdate.toLocaleDateString();
 
     const description = projectDetails.description
         ? `Descripción: ${projectDetails.description}`
@@ -55,20 +62,26 @@ function generateProjectInfo(projectDetails) {
     const owner = projectDetails.owner.login;
 
     const contributors = projectDetails.contributors_url
-        ? fetch(projectDetails.contributors_url)
-            .then(response => response.json())
-            .then(contributors => contributors.map(contributor => contributor.login).join(', '))
+        ? fetchContributors(projectDetails.contributors_url)
         : "No disponible";
 
     const language = projectDetails.language || "No disponible";
 
     return {
-        creationDate: `Este proyecto fue creado el ${formattedDate}.`,
+        creationDate: `Este proyecto fue creado el ${formattedCreationDate}.`,
         description: description,
         owner: owner,
         contributors: contributors,
-        language: language
+        language: language,
+        lastUpdate: `Última actualización: ${formattedLastUpdate}`
     };
+}
+
+function fetchContributors(contributorsUrl) {
+    return fetch(contributorsUrl)
+        .then(response => response.json())
+        .then(contributors => contributors.map(contributor => contributor.login).join(', '))
+        .catch(error => console.error("Error fetching contributors:", error));
 }
 
 function closeModal() {
@@ -93,3 +106,7 @@ contactForm.addEventListener("submit", function(event) {
     // Restablecer los campos del formulario
     contactForm.reset();
 });
+
+// Botón para ir a la página de usuario de GitHub
+const goToUserPageBtn = document.getElementById("goToUserPageBtn");
+goToUserPageBtn.href = `https://github.com/${username}`;
