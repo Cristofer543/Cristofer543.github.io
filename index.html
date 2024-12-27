@@ -3,40 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio Anime</title>
+    <title>Cristofer's Anime Portfolio</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
+    <header class="glass-nav">
         <nav>
+            <div class="logo">クリストファー</div>
             <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
-    
-    <section id="inicio" class="hero">
-        <div class="contenedor">
-            <h1>Bienvenido a mi Mundo Anime</h1>
-            <p>Desarrollador web y fanático del anime.</p>
-        </div>
-    </section>
-    
-    <section id="proyectos">
-        <h2>Mis Proyectos</h2>
-        <div class="proyecto">
-            <img src="proyecto1.jpg" alt="Proyecto 1">
-            <p>Descripción de tu proyecto 1</p>
-        </div>
-        <!-- Añadir más proyectos -->
-    </section>
-    
-    <footer id="contacto">
-        <p>Contacto: tuemail@correo.com</p>
-    </footer>
 
-    <script src="scripts.js"></script>
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1 class="glitch-text">Welcome to My Anime Universe</h1>
+                <p class="subtitle">Web Developer | Anime Enthusiast</p>
+                <div class="social-links">
+                    <a href="https://github.com/Cristofer543" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-grid">
+            <h2>Featured Projects</h2>
+            <div id="github-projects"></div>
+        </section>
+
+        <footer id="contact">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <div class="contact-links">
+                    <a href="https://github.com/Cristofer543" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Fetch GitHub projects
+        async function fetchGitHubProjects() {
+            try {
+                const response = await fetch('https://api.github.com/users/Cristofer543/repos');
+                const projects = await response.json();
+                const projectsContainer = document.getElementById('github-projects');
+                
+                projects.forEach(project => {
+                    const projectCard = document.createElement('div');
+                    projectCard.className = 'project-card';
+                    projectCard.innerHTML = `
+                        <h3>${project.name}</h3>
+                        <p>${project.description || 'No description available'}</p>
+                        <a href="${project.html_url}" target="_blank">View Project</a>
+                    `;
+                    projectsContainer.appendChild(projectCard);
+                });
+            } catch (error) {
+                console.error('Error fetching projects:', error);
+            }
+        }
+
+        fetchGitHubProjects();
+    </script>
 </body>
 </html>
